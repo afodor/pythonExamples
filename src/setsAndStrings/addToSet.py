@@ -18,7 +18,7 @@ def addToSet(num):
 	for i in range(num):
 		mySet.add("A" + str(i))
 
-def addToList(num):
+def addToSeq(num):
 	mySeq = ""
 
 	for i in range(num):
@@ -35,6 +35,6 @@ print( (endTime - startTime) / 1000 )
 
 
 startTime = unix_time_millis( datetime.datetime.now())
-addToList(num)
+addToSeq(num)
 endTime = unix_time_millis( datetime.datetime.now())
 print( (endTime - startTime) / 1000 ) 
