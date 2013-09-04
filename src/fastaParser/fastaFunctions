@@ -1,0 +1,14 @@
+
+# from "Bioinformatics Programming Using Python" - By Mitchell L. Model
+
+def read_FASTA_strings(filename):
+	with open(filename) as file:
+		return file.read().split('>')[1:]
+		
+def read_FASTA_entries(filename):
+	return [seq.partition('\n') for seq in read_FASTA_strings(filename)]
+		
+		
+mySeqs = read_FASTA_strings( "C:\\classes\\undergradProgramming_2013\\sequences\\test.fasta" )
+
+mySeqs = read_FASTA_entries("C:\\classes\\undergradProgramming_2013\\sequences\\test.fasta" )
