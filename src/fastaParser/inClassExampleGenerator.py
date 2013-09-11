@@ -40,3 +40,4 @@ def writeStatsFile( inFile, outFile ):
 
 
 writeStatsFile("C:\\classes\\undergradProgramming_2013\\sequences\\example.fastq", "C:\\classes\\undergradProgramming_2013\\sequences\\fileOut.txt")
+myGen = getQualScoreLines("C:\\classes\\undergradProgramming_2013\\sequences\\example.fastq")
