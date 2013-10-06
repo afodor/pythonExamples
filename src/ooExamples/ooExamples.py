@@ -12,7 +12,9 @@ class FastaSequence:
 		
 	def getSequence(self):
 		return self.sequence
-		
+	
+	def getGCContent(self):
+		return (self.sequence.count("C") + self.sequence.count("G")) / float(len(self.sequence))		
 
 #returns a tuple with (header,sequence) 
 def fastaAsGen(filepath):
@@ -31,7 +33,7 @@ def fastaAsGen(filepath):
 	f.close()		
 
 	
-myGen = fastaAsGen("D:\\classes\\undergradProgramming_2013\\sequences\\NC-016613.faa")
+myGen = fastaAsGen("D:\\classes\\undergradProgramming_2013\\sequences\\NC-005363.ffn")
 
 mySeq = next(myGen)
 
@@ -39,10 +41,19 @@ mySeq
 
 mySeq.getHeader()
 mySeq.getSequence()
+mySeq.getGCContent()
 
 # considered poor form but allowed in Python
 mySeq.header
 mySeq.sequence
+
+myGen = fastaAsGen("D:\\classes\\undergradProgramming_2013\\sequences\\NC-005363.ffn")
+f = open("c:\\temp\\gcContent.txt", "w")
+
+for fastaSeq in myGen:
+	f.write( str(fastaSeq.getGCContent()) + "\n")
+	
+f.close()
 
 
 
