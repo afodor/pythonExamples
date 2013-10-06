@@ -7,8 +7,25 @@ def read_FASTA_strings(filename):
 		
 def read_FASTA_entries(filename):
 	return [seq.partition('\n') for seq in read_FASTA_strings(filename)]
-		
-		
-mySeqs = read_FASTA_strings( "C:\\classes\\undergradProgramming_2013\\sequences\\test.fasta" )
 
-mySeqs = read_FASTA_entries("C:\\classes\\undergradProgramming_2013\\sequences\\test.fasta" )
+def read_FASTA_sequences(filename):
+	return [ (seq[0],seq[2].replace('\n','')) for seq in read_FASTA_entries(filename) ]
+	
+def read_FASTA_generator(filename):
+	return ( (seq[0],seq[2].replace('\n','')) for seq in read_FASTA_entries(filename) )
+	
+
+mySeqs = read_FASTA_sequences("C:\\classes\\undergradProgramming_2013\\sequences\\test.fasta" )
+
+for seq in mySeqs:
+	print(mySeqs)
+	
+for seq in mySeqs:
+	print(mySeqs)
+
+
+def read_FASTA_generator(filename):
+	return ( (seq[0],seq[2].replace('\n','')) for seq in read_FASTA_entries(filename) )
+
+		
+mySeqs = read_FASTA_generator("C:\\classes\\undergradProgramming_2013\\sequences\\test.fasta" )

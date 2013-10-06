@@ -1,0 +1,3 @@
+def countNumberOfAs(s):
+	return s.count("A")
+
