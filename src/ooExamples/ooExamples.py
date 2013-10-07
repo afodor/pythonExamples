@@ -6,6 +6,9 @@ class FastaSequence:
 	def __init__( self, header, sequence):
 		self.header = header
 		self.sequence = sequence
+	
+	def __str__(self):
+		return self.header + "\n" + self.sequence
 		
 	def getHeader(self):
 		return self.header

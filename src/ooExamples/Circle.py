@@ -16,6 +16,11 @@ class Circle:
 		return math.pi * self.radius ** 2
 		
 
-c = Circle(5)
-c.getArea()
-c.getRadius()
+c1 = Circle(5)
+c1.getArea()
+c1.getRadius()
+
+c2 = Circle(6)
+c2.getArea()
+c2.getRadius()
+
