@@ -1,0 +1,49 @@
+
+with open("c:\\temp\\file.txt") as file:
+	i=0
+	lines = file.read()
+	for i in line:
+		print line[i]
+		linestrip = file.readline().rstrip()
+		line = file.readline.rstrip()
+		i += 2
+		
+
+################################
+		
+f=open("c:\\temp\\example.txt")
+
+myList = []
+for i in f:
+	myList.append(i)
+	print(myList[::2])
+f.close()
+
+
+################################
+
+def everyOtherChar(file):
+	i=0
+	char=0
+	for i in file[i]:
+		if i % 2 == 0:
+			for char in file[i][char]:
+				if char % 2  == 0:
+					print([i][char])
+						
+f = open("c:\\temp\\myFile.txt")
+
+#####################################
+
+f = open("file.txt")
+
+lineCount = 0
+
+for line in f.readline():
+	if lineCount % 2 == 0:
+		print line[x] for x in range(0,2,len(line))
+	lineCount = lineCount + 1
+	
+#########################################
+
+
