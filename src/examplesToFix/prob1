@@ -47,3 +47,26 @@ for line in f.readline():
 #########################################
 
 
+def flipFlop():
+	r = r.open(filename)
+	count = 0
+	while line in r:
+		count = count + 1
+		if ( count % 2 == 1 ) 
+			print( line) 
+			
+######################################
+
+
+def readFile():
+	file = open("c:\\temp\\file.txt", "r")
+	line =0;
+	for line in file:
+		print( file[::2] ) 
+		line += 2
+
+########################################
+
+
+
+
