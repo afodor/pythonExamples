@@ -1,0 +1,55 @@
+
+def function(myList1):
+	myset = set.add(myList1)
+	print mySet.sorted[key=myList1]
+	
+######################
+
+# OR
+
+#########################
+
+def function(myList1):
+	countMap = {}
+	for word in myList1:
+		countMap.setDefault(word,0)
+		countMap[word] += 1
+	print( countMap.keys() if countMap[word] == 1)
+	
+	
+#################################
+
+def noDuplicates(list):
+	i=0
+	myList = []
+	while len(list) > 0:
+		for i in list:
+			if list[i] != list[i+1]:
+				myList += list[i]
+					i+=1
+	
+	print(myList.sort())
+	
+################################
+
+
+def uniqueStrings(myList):
+	newList = []
+	for s in myList:
+		if newList.count(s) == 0:
+			newList.append(s)
+	return newList
+		
+#################################
+
+def remove(list):
+	check = set(list)
+	newlist=[]
+	for word in words:
+		if check.contains(word) = true
+			newlist.append(word)
+	return newlist
+
+####################################
+
+
