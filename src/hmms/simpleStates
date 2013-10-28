@@ -1,0 +1,24 @@
+import random
+
+class SimpleMarkovState:
+	
+	def __init__(self,charToEmit,transitionProbs):
+		self.charToEmit = charToEmit
+		self.transitionProbs = transitionProbs
+		
+	
+	def getEmission(self):
+		return self.charToEmit
+		
+	
+	def getTransitionIndex(self):
+		print ( random.random() )
+	
+
+
+cState = SimpleMarkovState( "C", (.7,.3) ) 
+gState = SimpleMarkovState( "G", (.4,.6) ) 
+
+myStates = (cState, gState ) 
+
+cState.getTransitionIndex()

@@ -11,13 +11,17 @@ with open("c:\\temp\\file.txt") as file:
 
 ################################
 		
-f=open("c:\\temp\\example.txt")
+f=open("c:\\temp\\file.txt")
 
 myList = []
 for i in f:
 	myList.append(i)
-	print(myList[::2])
+
+
 f.close()
+
+for st in myList[::2]:
+	print(st[::2])
 
 
 ################################
