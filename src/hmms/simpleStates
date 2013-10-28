@@ -15,7 +15,7 @@ class SimpleMarkovState:
 		index =0
 		for val in self.transitionProbs:
 			cumulative += val
-			if cumulative <= aRand:
+			if aRand <= cumulative:
 				return index
 			index = index + 1
 		return len(self.transitionProbs) - 1
