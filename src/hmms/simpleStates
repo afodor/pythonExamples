@@ -6,19 +6,17 @@ class SimpleMarkovState:
 		self.charToEmit = charToEmit
 		self.transitionProbs = transitionProbs
 		
-	
 	def getEmission(self):
 		return self.charToEmit
 		
-	
 	def getTransitionIndex(self):
 		aRand = random.random()
 		cumulative = 0
-		index =0;
+		index =0
 		for val in self.transitionProbs:
 			cumulative += val
-			if cumulative <= random:
-				reutrn index
+			if cumulative <= aRand:
+				return index
 			index = index + 1
 		return len(self.transitionProbs) - 1
 
@@ -27,3 +25,11 @@ gState = SimpleMarkovState( "G", (.4,.6) )
 
 myStates = (cState, gState ) 
 
+mySeq = ""
+state = cState
+
+for i in range(0,100):
+	mySeq = mySeq + state.getEmission() 
+	state = myStates[ state.getTransitionIndex() ]
+
+mySeq
