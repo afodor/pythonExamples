@@ -20,15 +20,15 @@ class SimpleMarkovState:
 			index = index + 1
 		return len(self.transitionProbs) - 1
 
-cState = SimpleMarkovState( "C", (.7,.3) ) 
-gState = SimpleMarkovState( "G", (.4,.6) ) 
+cState = SimpleMarkovState( "C", (.99,.01) ) 
+gState = SimpleMarkovState( "G", (.1,.9) ) 
 
 myStates = (cState, gState ) 
 
 mySeq = ""
 state = cState
 
-for i in range(0,100):
+for i in range(0,1000):
 	mySeq = mySeq + state.getEmission() 
 	state = myStates[ state.getTransitionIndex() ]
 
