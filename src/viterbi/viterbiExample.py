@@ -3,6 +3,7 @@ import random
 class MarkovState:
 	
 	def __init__(self,charsToEmit, emissionProbs,transitionProbs):
+		self.charsToEmit = charsToEmit
 		self.emissionProbs = emissionProbs
 		self.transitionProbs = transitionProbs
 		
@@ -18,10 +19,10 @@ class MarkovState:
 		return len(self.emissionProbs) - 1
 		
 	def getIndexOfEmission(self, char):
-		for i in range(0, len(charsToEmit) ):
-			if charsToEmit[i] == char:
+		for i in range(0, len(self.charsToEmit) ):
+			if self.charsToEmit[i] == char:
 				return i
-		raise Exception("Cound not find " + char )
+		raise Exception("Cound not find " + str(char) )
 				
 	def getTransitionIndex(self):
 		aRand = random.random()
@@ -43,26 +44,30 @@ def getMaxIndex( iterable ):
 			returnVal = index
 		index = index+1
 	return returnVal
-	
 
 def getViterbiPath( markovStates, output, emissions ):
-	viterbiPath = []
+	returnPath= []
 	oldViterbiProbs = []
-	oldViterbiProbs[0] = 1 # we are 100% sure we start in the first state
+	oldViterbiProbs.append(1) # we are 100% sure we start in the first state
 	for i in range( 1, len(markovStates) ):
-		oldViterbiProbs[i] = 0
+		oldViterbiProbs.append( 0)
+	aTuple = ( oldViterbiProbs, 0)
+	returnPath.append( aTuple )
 	
-	for i in range( 0,emissions):
+	for i in range( 0,len(emissions)):
 		newViterbiProbs = []
 		for j in range( 0, len(markovStates)):
-			emissionProb = state.emissionProbs[state.getIndexOfEmission(j)]		
+			state = markovStates[j]
+			emissionProb = state.emissionProbs[state.getIndexOfEmission(emissions[j])]		
 			vTimesA=[]
-			for k in range(0, markovStates):
-				vTimesA[k] = oldViterbiProbs[j] * markovStates[j].transitionProbs[k]
+			for k in range(0, len(markovStates)):
+				vTimesA.append (oldViterbiProbs[j] * markovStates[j].transitionProbs[k])
 			maxVal = vTimesA[ getMaxIndex(vTimesA) ]
-			newViterbiProbs[j] = emissionProb * maxVal
-		viterbiPath[i] = getMaxIndex(newViterbiProbs)	
-	return viterbiPath
+			newViterbiProbs.append( emissionProb * maxVal)
+		aTuple = (newViterbiProbs,getMaxIndex(newViterbiProbs))
+		returnPath.append( aTuple)
+		oldViterbiProbs = newViterbiProbs
+	return returnPath
 
 dice = ( 1,2,3,4,5,6 ) 
 
@@ -71,6 +76,13 @@ loadedState = MarkovState( dice, (1/10,1/10,1/10,1/10,1/10,5/10), ( 0.10, 0.90) 
 
 states = ( fairState, loadedState ) 
 
+################################################
+
+rolls = "266666"
+getViterbiPath( states, rolls, dice)
+
+
+################################################
 rolls = ""
 trueStates = ""
 state = states[0]
