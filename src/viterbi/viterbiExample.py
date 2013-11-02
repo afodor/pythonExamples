@@ -32,7 +32,7 @@ class MarkovState:
 dice = ( 1,2,3,4,5,6 ) 
 
 fairState = MarkovState( dice, (1/6,1/6,1/6,1/6,1/6,1/6), ( 0.95, 0.05) )
-loadedState = MarkovState( dice, (1/5,1/5,1/5,1/5,1/5,5/5), ( 0.10, 0.90) )
+loadedState = MarkovState( dice, (1/10,1/10,1/10,1/10,1/10,5/10), ( 0.10, 0.90) )
 
 states = ( fairState, loadedState ) 
 
@@ -40,12 +40,11 @@ rolls = ""
 trueStates = ""
 state = states[0]
 
-
 for i in range( 1, 1000):
-	rolls = rolls + str( dice[state.getEmissionIndex()] )
 	nextState = state.getTransitionIndex()
+	state = states[ nextState]
 	trueStates = trueStates + str(nextState)
-	state = states[ nextState ]
+	rolls = rolls + str( dice[ state.getEmissionIndex()] )
 
 rolls
 trueStates
