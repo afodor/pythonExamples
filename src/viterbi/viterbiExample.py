@@ -58,11 +58,11 @@ def getViterbiPath( markovStates, output):
 		newViterbiProbs = []
 		for j in range( 0, len(markovStates)):
 			state = markovStates[j]
-			emissionProb = state.emissionProbs[state.getIndexOfEmission(output[j])]		
+			emissionProb = state.emissionProbs[state.getIndexOfEmission(output[i])]		
 			vTimesA=[]
 			for k in range(0, len(markovStates)):
 				vTimesA.append (oldViterbiProbs[k] * markovStates[k].transitionProbs[j])
-			print( "vTimesA" + str( vTimesA))
+			#print( "vTimesA" + str( vTimesA))
 			maxVal = vTimesA[ getMaxIndex(vTimesA) ]
 			newViterbiProbs.append( emissionProb * maxVal)
 		aTuple = (newViterbiProbs,getMaxIndex(newViterbiProbs))
@@ -79,7 +79,7 @@ states = ( fairState, loadedState )
 
 ################################################
 
-rolls = "26"
+rolls = "266666"
 getViterbiPath( states, rolls)
 
 ################################################
