@@ -20,7 +20,7 @@ class MarkovState:
 		
 	def getIndexOfEmission(self, char):
 		for i in range(0, len(self.charsToEmit) ):
-			if self.charsToEmit[i] == char:
+			if str(self.charsToEmit[i]) == str(char):
 				return i
 		raise Exception("Cound not find " + str(char) )
 				
@@ -40,12 +40,12 @@ def getMaxIndex( iterable ):
 	index =0
 	returnVal =0
 	for i in iterable:
-		if i < val:
+		if i > val:
 			returnVal = index
 		index = index+1
 	return returnVal
 
-def getViterbiPath( markovStates, output, emissions ):
+def getViterbiPath( markovStates, output):
 	returnPath= []
 	oldViterbiProbs = []
 	oldViterbiProbs.append(1) # we are 100% sure we start in the first state
@@ -54,14 +54,15 @@ def getViterbiPath( markovStates, output, emissions ):
 	aTuple = ( oldViterbiProbs, 0)
 	returnPath.append( aTuple )
 	
-	for i in range( 0,len(emissions)):
+	for i in range( 0,len(output)):
 		newViterbiProbs = []
 		for j in range( 0, len(markovStates)):
 			state = markovStates[j]
-			emissionProb = state.emissionProbs[state.getIndexOfEmission(emissions[j])]		
+			emissionProb = state.emissionProbs[state.getIndexOfEmission(output[j])]		
 			vTimesA=[]
 			for k in range(0, len(markovStates)):
-				vTimesA.append (oldViterbiProbs[j] * markovStates[j].transitionProbs[k])
+				vTimesA.append (oldViterbiProbs[k] * markovStates[k].transitionProbs[j])
+			print( "vTimesA" + str( vTimesA))
 			maxVal = vTimesA[ getMaxIndex(vTimesA) ]
 			newViterbiProbs.append( emissionProb * maxVal)
 		aTuple = (newViterbiProbs,getMaxIndex(newViterbiProbs))
@@ -78,9 +79,8 @@ states = ( fairState, loadedState )
 
 ################################################
 
-rolls = "266666"
-getViterbiPath( states, rolls, dice)
-
+rolls = "26"
+getViterbiPath( states, rolls)
 
 ################################################
 rolls = ""
