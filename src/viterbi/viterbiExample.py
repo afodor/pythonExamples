@@ -87,7 +87,7 @@ rolls = ""
 trueStates = ""
 state = states[0]
 
-for i in range( 1, 100):
+for i in range( 1, 50):
 	nextState = state.getTransitionIndex()
 	state = states[ nextState]
 	trueStates = trueStates + str(nextState)
@@ -95,3 +95,11 @@ for i in range( 1, 100):
 
 rolls
 trueStates
+
+viterbiPath = getViterbiPath( states, rolls)
+
+for i in range(0, len(rolls)):
+	print( str(rolls[i]) + " " + str(trueStates[i])+ " " + str(viterbiPath[i][1]))
+
+################################################
+
