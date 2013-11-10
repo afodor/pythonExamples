@@ -1,5 +1,14 @@
 import random
 
+import math
+from math import isinf
+
+def logPAddedToQ( logP, logQ ):
+	if( isinf( logP ) and logP < 0):
+		return logQ
+		
+	return logP + math.log( 1 + math.exp( logQ - logP))
+
 class MarkovState:
 	
 	def __init__(self,charsToEmit, emissionProbs,transitionProbs):
@@ -37,6 +46,12 @@ class MarkovState:
 
 dice = ( 1,2,3,4,5,6 ) 
 
+#######################
+#
+# run the forward algorithm in unlogged space
+#
+######################
+
 fairState = MarkovState( dice, (1/6,1/6,1/6,1/6,1/6,1/6), ( 0.95, 0.05) )
 loadedState = MarkovState( dice, (1/10,1/10,1/10,1/10,1/10,5/10), ( 0.10, 0.90) )
 
@@ -63,5 +78,24 @@ for num in rolls:
 px = 0.0001 * newProbs[0] + 0.0001 * newProbs[1]
 px
 
+##############################################
+# 
+#  test the adding log space
+#
+############################################
 
+p = 0.0001
+q = 0.000001
 
+math.log(p+q)
+
+logP = math.log(p)
+logQ = math.log(q)
+
+logPAddedToQ( logP, logQ)
+
+##################################################
+#
+# 
+#
+##############################################
