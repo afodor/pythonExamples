@@ -96,6 +96,39 @@ logPAddedToQ( logP, logQ)
 
 ##################################################
 #
-# 
+#  The forward algorithm in log space 
 #
-##############################################
+#################################################
+
+def printExpVals( iterable ):
+	s = ""
+	for i in iterable:
+		s = s + str(math.exp(i)) + "\t"
+	print (s)
+
+fairState = MarkovState( dice, (1/6,1/6,1/6,1/6,1/6,1/6), ( 0.95, 0.05) )
+loadedState = MarkovState( dice, (1/10,1/10,1/10,1/10,1/10,5/10), ( 0.10, 0.90) )
+
+states = (fairState, loadedState)
+
+rolls = "326"
+
+oldProbs = []
+oldProbs.append( math.log( 0.7))
+oldProbs.append(math.log(0.3))
+printExpVals(oldProbs)
+
+for num in rolls:
+	newProbs = []
+	for i in range(0,len(states)):
+		prob = float("-inf")
+		for j in range(0,len(states)):
+			prob = logPAddedToQ(  prob , oldProbs[j] + math.log( states[j].transitionProbs[i]))
+		prob = prob + math.log( states[i].emissionProbs[ states[i].getIndexOfEmission(num)])
+		newProbs.append(prob)
+	oldProbs = newProbs
+	printExpVals(newProbs)
+
+px = logPAddedToQ( math.log( 0.0001)  + newProbs[0] , math.log( 0.0001) + newProbs[1])
+px
+math.exp(px)
