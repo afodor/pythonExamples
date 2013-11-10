@@ -87,7 +87,7 @@ rolls = ""
 trueStates = ""
 state = states[0]
 
-for i in range( 1, 50):
+for i in range( 1, 100):
 	nextState = state.getTransitionIndex()
 	state = states[ nextState]
 	trueStates = trueStates + str(nextState)

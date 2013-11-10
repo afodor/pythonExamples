@@ -10,9 +10,6 @@ class Cell:
 	
 	def getDirection(self):
 		return self.direction
-	
-
-
 
 len1 = 5
 len2 = 4
